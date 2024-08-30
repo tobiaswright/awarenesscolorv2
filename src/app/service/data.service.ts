@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { computed, Injectable, OnInit, signal } from '@angular/core';
 
 import data from '../assets/data.json'
 
@@ -11,18 +11,14 @@ interface ColorData {
 @Injectable({
   providedIn: 'root'
 })
-export class DataService implements OnInit {
-  private data = data;
-  private sortedData:ColorData[] = [];
+export class DataService {
+  private data = signal(data);
 
-  constructor() { }
+  sortedData = computed( ()=> this.sortList( this.data(), 'cause'));
 
-   ngOnInit(): void {
-     this.sortedData = this.sortList( this.data, 'cause');
-   }
 
   get colorData() {
-    return this.sortedData
+    return this.sortedData();
   }
 
   private sortList( arr: ColorData[], prop: string) {
