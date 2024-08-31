@@ -1,5 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
+
+interface ColorData {
+  cause:string,
+  causeFull:string,
+  htmlcolor:string
+}
 
 @Component({
   selector: 'app-color-list',
@@ -8,11 +14,15 @@ import { DataService } from '../service/data.service';
   templateUrl: './color-list.component.html',
   styleUrl: './color-list.component.css'
 })
-export class ColorListComponent implements OnInit{
-  data = inject( DataService);
+export class ColorListComponent {
+  colorList = inject( DataService );
+  list = this.colorList.getData();
   
-  ngOnInit(): void {
+  constructor() {
     console.log("allo")
+    effect(() => {
+      console.log(this.list);
+    });
   }
 
 

@@ -12,17 +12,14 @@ interface ColorData {
   providedIn: 'root'
 })
 export class DataService {
-  private data = signal(data);
+  private unsortedData = signal<ColorData[]>(data);
 
-  sortedData = computed( ()=> this.sortList( this.data(), 'cause'));
-
-
-  get colorData() {
-    return this.sortedData();
+  getData() {
+    return computed( ()=> this.sortList( this.unsortedData(), 'cause'));
   }
 
   private sortList( arr: ColorData[], prop: string) {
-    return arr.sort( (a, b) => {
+    return arr.sort( (a:ColorData, b:ColorData) => {
       const c = prop as keyof ColorData;
 
       const x = a[c].toLowerCase();
