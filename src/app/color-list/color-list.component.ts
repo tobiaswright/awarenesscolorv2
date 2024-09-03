@@ -15,14 +15,22 @@ interface ColorData {
   styleUrl: './color-list.component.css'
 })
 export class ColorListComponent {
-  colorList = inject( DataService );
-  list = this.colorList.getData();
+  DataService = inject( DataService );
+  list = this.DataService.getColorData();
   
   constructor() {
     console.log("allo")
     effect(() => {
       console.log(this.list);
     });
+
+
+
+    // this.list.
+  }
+
+  onButtonTest() {
+    this.DataService.sortData();
   }
 
 
