@@ -16,25 +16,41 @@ interface ColorMap {
   hexCode:string
 }
 
+export interface Data {
+  cause: string;
+  causeFull: string;
+  isSingle: boolean;
+  id: number;
+  colorData: Color;
+}
+export interface Color {
+  htmlcolor?: (string)[] | null;
+  displayName: string;
+  hexCode?: (string)[] | null;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
-  private unsortedDate: ColorData[] = data;
+export class DataService implements OnInit {
+  private unsortedData: ColorData[] = data;
+  private unsortedColorMap: ColorMap[] = colorMap;
+  list = signal<Data[]>([]);
+
   // private unsortedData = signal<ColorData[]>(data);
 
-  constructor() {
-    let sortedList = this.sortList( this.unsortedDate, 'cause' );
-    
-    
+  ngOnInit(): void {
+    let sortedList = this.sortList( this.unsortedData, 'cause' );
+    let map = this.createMap( this.unsortedColorMap );
+
+    this.list =  signal(this.addColorMap(sortedList, map));
+
+    console.log("allo",this.list)
   }
 
-
-
   getColorData() {
-    // return this.unsortedData;
-
-    // return computed( ()=> this.sortList( this.unsortedData(), 'cause'));
+    return this.list
   }
 
   sortData() {
@@ -51,8 +67,24 @@ export class DataService {
     return map
   }
 
-  private addColorData( arr: ColorData[] ) {
+  private addColorMap( arr: ColorData[], map: Map<string, ColorMap>  ):Data[] {
+    // let colorDataAry = [];
 
+    return arr.map( (item) =>{
+      let htmlcolor = item.htmlcolor.split(',');
+
+      return {
+        cause: item.cause,
+        causeFull: item.causeFull !== "" ? item.causeFull : item.cause,
+        isSingle: htmlcolor.length > 1 ? false : true,
+        id: Math.random() * 100,
+        colorData: {
+          htmlcolor: [...htmlcolor],
+          displayName: htmlcolor.map( item => map.get(item)?.displayName).join(", "),
+          hexCode: htmlcolor.map( item => map.get(item)!.hexCode)
+        }
+      }
+    })
   }
 
   private sortList( arr: ColorData[], prop: string) {

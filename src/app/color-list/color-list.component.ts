@@ -19,9 +19,9 @@ export class ColorListComponent {
   list = this.DataService.getColorData();
   
   constructor() {
-    console.log("allo")
+    // console.log("allo")
     effect(() => {
-      console.log(this.list);
+      console.log(this.list());
     });
 
 
