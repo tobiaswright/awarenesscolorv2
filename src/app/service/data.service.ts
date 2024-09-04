@@ -1,8 +1,8 @@
-import { computed, Injectable, OnInit, signal } from '@angular/core';
-
+import { Injectable, signal } from '@angular/core';
+ 
 import data from '../assets/data.json'
 import colorMap from '../assets/color-map.json';
-
+import { type Data } from '../color-data.model';
 
 interface ColorData {
   cause:string,
@@ -16,39 +16,23 @@ interface ColorMap {
   hexCode:string
 }
 
-export interface Data {
-  cause: string;
-  causeFull: string;
-  isSingle: boolean;
-  id: number;
-  colorData: Color;
-}
-export interface Color {
-  htmlcolor?: (string)[] | null;
-  displayName: string;
-  hexCode?: (string)[] | null;
-}
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   private unsortedData: ColorData[] = data;
   private unsortedColorMap: ColorMap[] = colorMap;
-  list = signal<Data[]>([]);
-
-  // private unsortedData = signal<ColorData[]>(data);
+  data = signal<Data[]>([]);
 
   constructor() {
     let sortedList = this.sortList( this.unsortedData, 'cause' );
     let map = this.createMap( this.unsortedColorMap );
 
-    this.list.set(this.addColorMap(sortedList, map));
+    this.data.set(this.addColorMap(sortedList, map));
   }
 
   getColorData() {
-    return this.list
+    return this.data
   }
 
   sortData() {
@@ -66,20 +50,23 @@ export class DataService {
   }
 
   private addColorMap( arr: ColorData[], map: Map<string, ColorMap>  ):Data[] {
-    // let colorDataAry = [];
-
-    return arr.map( (item) =>{
-      let htmlcolor = item.htmlcolor.split(',');
+    return arr.map( (item) => {
+      const htmlcolor = item.htmlcolor.split(',');
+      const causeFull = item.causeFull !== "" ? item.causeFull : item.cause;
+      const isSingle = htmlcolor.length > 1 ? false : true;
+      const id = Math.random() * 100;
+      const displayName = htmlcolor.map( item => map.get(item)!.displayName).join(", ");
+      const hexCode = htmlcolor.map( item => map.get(item)!.hexCode);
 
       return {
         cause: item.cause,
-        causeFull: item.causeFull !== "" ? item.causeFull : item.cause,
-        isSingle: htmlcolor.length > 1 ? false : true,
-        id: Math.random() * 100,
+        causeFull: causeFull,
+        isSingle: isSingle,
+        id: id,
         colorData: {
-          htmlcolor: [...htmlcolor],
-          displayName: htmlcolor.map( item => map.get(item)?.displayName).join(", "),
-          hexCode: htmlcolor.map( item => map.get(item)!.hexCode)
+          htmlcolor: htmlcolor,
+          displayName: displayName,
+          hexCode: hexCode
         }
       }
     })
