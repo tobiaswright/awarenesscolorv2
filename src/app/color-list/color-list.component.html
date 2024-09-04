@@ -1,6 +1,6 @@
 
 <button (click) = "onButtonTest()">Test button</button>
 
-@for (color of list(); track color) {
+@for (color of list(); track color.id) {
     <p>{{ color.cause }}</p>
 }

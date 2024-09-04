@@ -33,20 +33,18 @@ export interface Color {
 @Injectable({
   providedIn: 'root'
 })
-export class DataService implements OnInit {
+export class DataService {
   private unsortedData: ColorData[] = data;
   private unsortedColorMap: ColorMap[] = colorMap;
   list = signal<Data[]>([]);
 
   // private unsortedData = signal<ColorData[]>(data);
 
-  ngOnInit(): void {
+  constructor() {
     let sortedList = this.sortList( this.unsortedData, 'cause' );
     let map = this.createMap( this.unsortedColorMap );
 
-    this.list =  signal(this.addColorMap(sortedList, map));
-
-    console.log("allo",this.list)
+    this.list.set(this.addColorMap(sortedList, map));
   }
 
   getColorData() {

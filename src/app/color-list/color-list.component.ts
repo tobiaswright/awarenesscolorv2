@@ -21,7 +21,7 @@ export class ColorListComponent {
   constructor() {
     // console.log("allo")
     effect(() => {
-      console.log(this.list());
+      console.log("all", this.list());
     });
 
 
