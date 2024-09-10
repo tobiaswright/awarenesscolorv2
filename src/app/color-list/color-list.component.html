@@ -1,6 +1,7 @@
 
-<button (click) = "onButtonTest()">Test button</button>
+<button (click) = "reverseList()">Reverse List</button>
+<button (click) = "filterByColor()">Color Switch</button>
 
-@for (color of list(); track color.id) {
+@for (color of causeList(); track color.id) {
     <p>{{ color.cause }}</p>
 }
