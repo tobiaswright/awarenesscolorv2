@@ -1,0 +1,7 @@
+<label for="color-dropdown">Find a cause by color:</label>
+
+<select name="color-dropdown" id="color-dropdown">
+    @for (color of colorMap; track color[0]) {
+        <option value="{{ color[1].displayName }}">{{ color[1].displayName }}</option>
+    }
+</select>

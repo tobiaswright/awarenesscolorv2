@@ -22,20 +22,23 @@ interface ColorMap {
 export class DataService {
   private unsortedData: ColorData[] = data;
   private unsortedColorMap: ColorMap[] = colorMap;
-  data = signal<Data[]>([]);
+  private map = this.createMap(this.unsortedColorMap);
+  private causeObj = this.createCauseObj(this.unsortedData, this.map);
+  private data = signal<Data[]>([]);
 
   constructor() {
-    let map = this.createMap(this.unsortedColorMap);
-    let causeObj = this.createCauseObj(this.unsortedData, map);
-
-    this.data.set(causeObj);
+    this.data.set(this.causeObj);
   }
 
   getCauseData() {
     return this.data;
   }
 
-  private createMap(array: ColorMap[]) {
+  getColorMap() {
+    return this.map
+  }
+
+  private createMap(array: ColorMap[]): Map<string, ColorMap> {
     let map = new Map();
     array.forEach((item) => {
       map.set(item.name, { ...item });

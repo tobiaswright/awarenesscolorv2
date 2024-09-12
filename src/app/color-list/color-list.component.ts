@@ -2,11 +2,12 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { DataService } from '../service/data.service';
 
 import { type Data } from '../color-data.model';
+import { ColorDropdownComponent } from "../color-dropdown/color-dropdown.component";
 
 @Component({
   selector: 'app-color-list',
   standalone: true,
-  imports: [],
+  imports: [ColorDropdownComponent],
   templateUrl: './color-list.component.html',
   styleUrl: './color-list.component.css'
 })
@@ -19,7 +20,8 @@ export class ColorListComponent {
     let data = this.causeData();
     if (this.filterColor()) {
       data = this.causeData().filter(
-        (item) => item.colorData.htmlcolor[0] === this.filterColor()
+        (item) => item.colorData.htmlcolor[0] === this.filterColor() ||
+                  item.colorData.htmlcolor[1] === this.filterColor()
       );
     }
 

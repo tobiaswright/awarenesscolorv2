@@ -2,6 +2,9 @@
 <button (click) = "reverseList()">Reverse List</button>
 <button (click) = "filterByColor()">Color Switch</button>
 
+
+<app-color-dropdown />
+
 @for (color of causeList(); track color.id) {
     <p>{{ color.cause }}</p>
 }
