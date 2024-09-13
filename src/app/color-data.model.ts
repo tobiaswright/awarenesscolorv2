@@ -6,7 +6,6 @@ export interface Data {
     colorData: Color;
   }
   export interface Color {
-    htmlcolor: (string)[];
     displayName: string;
     hexCode: (string)[];
   }

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 
 import data from '../assets/data.json';
 import colorMap from '../assets/color-map.json';
@@ -16,6 +16,8 @@ interface ColorMap {
   hexCode: string;
 }
 
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -24,23 +26,49 @@ export class DataService {
   private unsortedColorMap: ColorMap[] = colorMap;
   private map = this.createMap(this.unsortedColorMap);
   private causeObj = this.createCauseObj(this.unsortedData, this.map);
+  private isReversed = signal(false);
+  private filterColor = signal<string | null>(null);
   private data = signal<Data[]>([]);
+  private causeList = computed(() => {
+    let data = this.data();
+    if (this.filterColor()) {
+      data = this.data().filter(
+        (item) => item.colorData.htmlcolor[0] === this.filterColor() ||
+                  item.colorData.htmlcolor[1] === this.filterColor()
+      );
+    }
+
+    if (this.isReversed()) {
+      return this.sortList(data, this.isReversed());
+    }
+
+    return this.sortList(data);
+  })
 
   constructor() {
     this.data.set(this.causeObj);
   }
 
   getCauseData() {
-    return this.data;
+    return this.causeList;
   }
 
   getColorMap() {
     return this.map
   }
 
+  reverseList() {
+    this.isReversed.set(!this.isReversed());
+  }
+
+  filterByColor( color: string ) {
+    this.filterColor.set( color );
+  }
+
   private createMap(array: ColorMap[]): Map<string, ColorMap> {
     let map = new Map();
-    array.forEach((item) => {
+    array.sort( (a,b)=> (a.name).localeCompare(b.name))
+    .forEach((item) => {
       map.set(item.name, { ...item });
     });
     return map;
@@ -62,12 +90,28 @@ export class DataService {
         causeFull: causeFull,
         isSingle: isSingle,
         id: id,
-        colorData: {
-          htmlcolor: htmlcolor,
+        colorData: {,
           displayName: displayName,
           hexCode: hexCode,
         },
       };
     });
   }
+
+  private sortList(arr: Data[], reverse = false, prop = 'cause') {
+    return arr.sort((a: Data, b: Data) => {
+      const c = prop as keyof Data ;
+
+      const x = b[c] as string;
+      const y = a[c] as string
+      
+      if (reverse) {
+        return x.localeCompare(y);
+      }
+      return y.localeCompare(x);
+    });
+  }
 }
+
+
+

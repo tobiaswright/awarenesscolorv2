@@ -16,10 +16,15 @@ interface ColorMap {
   styleUrl: './color-dropdown.component.css'
 })
 export class ColorDropdownComponent {
-  colorMap = inject( DataService ).getColorMap();
+  dataService = inject( DataService );
+  colorMap = this.dataService.getColorMap();
 
   constructor() {
     console.log(this.colorMap)
+  }
+
+  onSelect( color: string ) {
+    this.dataService.filterByColor( color )
   }
 
 }

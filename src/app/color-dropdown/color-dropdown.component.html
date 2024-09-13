@@ -1,7 +1,8 @@
 <label for="color-dropdown">Find a cause by color:</label>
 
-<select name="color-dropdown" id="color-dropdown">
+<select #color name="color-dropdown" id="color-dropdown" (change)="onSelect(color.value)">
+    <option value="">ALL</option>
     @for (color of colorMap; track color[0]) {
-        <option value="{{ color[1].displayName }}">{{ color[1].displayName }}</option>
+        <option value="{{ color[1].name }}">{{ color[1].displayName }}</option>
     }
 </select>
