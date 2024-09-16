@@ -15,4 +15,13 @@ export class CauseCardComponent {
 
   constructor() {
   }
+
+  calculateStyles() {
+    const hexCode = this.cause().colorData.hexCode;
+    if (!this.cause().isSingle) {
+      const gradient = hexCode.join(",")
+      return 'background: linear-gradient(45deg,' + gradient +')'
+    }
+    return 'background-color:' + hexCode[0]
+  }
 }
