@@ -2,11 +2,12 @@ import { Component, effect, inject,  } from '@angular/core';
 import { DataService } from '../service/data.service';
 
 import { ColorDropdownComponent } from "../color-dropdown/color-dropdown.component";
+import { CauseCardComponent } from "../cause-card/cause-card.component";
 
 @Component({
   selector: 'app-color-list',
   standalone: true,
-  imports: [ColorDropdownComponent],
+  imports: [ColorDropdownComponent, CauseCardComponent],
   templateUrl: './color-list.component.html',
   styleUrl: './color-list.component.css'
 })

@@ -3,6 +3,6 @@
 
 <app-color-dropdown />
 
-@for (color of causeList(); track color.id) {
-    <p>{{ color.cause }}</p>
+@for (item of causeList(); track item.id) {
+    <app-cause-card [cause]="item" />
 }

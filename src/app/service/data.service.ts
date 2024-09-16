@@ -90,7 +90,8 @@ export class DataService {
         causeFull: causeFull,
         isSingle: isSingle,
         id: id,
-        colorData: {,
+        colorData: {
+          htmlcolor: htmlcolor,
           displayName: displayName,
           hexCode: hexCode,
         },
