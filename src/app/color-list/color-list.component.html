@@ -3,6 +3,10 @@
 
 <app-color-dropdown />
 
+<div class="flex flex-wrap">
+
 @for (item of causeList(); track item.id) {
     <app-cause-card [cause]="item" />
 }
+
+</div>

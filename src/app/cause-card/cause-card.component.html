@@ -1,5 +1,9 @@
-<div [style]="calculateStyles()" width="25px" height="25px">ddd</div>
-<p>
-    {{cause().cause}}<br />
-    {{cause().colorData.displayName}}
-</p>
+<div class="flex flex-none w-80 mb-5">
+    <div [style]="calculateStyles()"
+    class="w-9 h-9 mr-2 border border-slate-100"
+    ></div>
+    <ul class="mb-3">
+        <li class="font-bold mb-0 pb-0 text-base leading-tight">{{cause().cause}}</li>
+        <li class="mt-0 pt-0 text-sm leading-tight">{{cause().colorData.displayName}}</li>
+    </ul>
+</div>
