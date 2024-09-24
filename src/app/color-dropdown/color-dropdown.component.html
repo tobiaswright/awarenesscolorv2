@@ -1,5 +1,4 @@
 <label for="color-dropdown">Find a cause by color:</label>
-
 <select #color name="color-dropdown" id="color-dropdown" (change)="onSelect(color.value)">
     <option value="">ALL</option>
     @for (color of colorMap; track color[0]) {

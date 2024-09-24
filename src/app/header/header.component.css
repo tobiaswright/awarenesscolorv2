@@ -1,0 +1,8 @@
+h1, h2 {
+    @apply text-2xl inline-block
+}
+
+header {
+    @apply flex flex-col items-center justify-between max-w-full md:max-w-6xl px-2 md:px-6 py-12 mx-auto md:flex-row
+}
+

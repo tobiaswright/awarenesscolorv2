@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DataService } from '../service/data.service';
 
-
 interface ColorMap {
   name: string;
   displayName: string;
@@ -17,11 +16,7 @@ interface ColorMap {
 })
 export class ColorDropdownComponent {
   dataService = inject( DataService );
-  colorMap = this.dataService.getColorMap();
-
-  constructor() {
-    console.log(this.colorMap)
-  }
+  colorMap: Map<String, ColorMap> = this.dataService.getColorMap();
 
   onSelect( color: string ) {
     this.dataService.filterByColor( color )
