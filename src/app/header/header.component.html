@@ -1,13 +1,18 @@
 <header>
-    <a href="./">
-        <h1>Awareness Color</h1>
-        <h2> - for every cause there is a color.</h2>
-    </a>
-
-    <div>
-        <app-color-dropdown />
+    <div class="navbar bg-base-300 rounded-box">
+        <div class="flex-1 px-2 lg:flex-none">
+            <a class="text-lg font-bold">
+                <h1>Awareness Color</h1>
+                <h2> - for every cause there is a color.</h2>
+            </a>
+        </div>
+        <div class="flex flex-1 justify-end px-2">
+            <div class="flex items-stretch">
+                <a class="btn btn-ghost rounded-btn">
+                    <button class="btn" (click)="reverseList()">Reverse List</button>
+                </a>
+                <app-color-dropdown />
+            </div>
+        </div>
     </div>
 </header>
-
-
-

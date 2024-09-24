@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ColorDropdownComponent } from "../color-dropdown/color-dropdown.component";
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +10,9 @@ import { ColorDropdownComponent } from "../color-dropdown/color-dropdown.compone
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  dataService = inject( DataService )
 
+  reverseList() {
+    this.dataService.reverseList();
+  }
 }

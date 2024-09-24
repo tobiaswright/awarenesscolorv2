@@ -1,7 +1,20 @@
-<label for="color-dropdown">Find a cause by color:</label>
-<select #color name="color-dropdown" id="color-dropdown" (change)="onSelect(color.value)">
+<!-- <label for="color-dropdown">Find a cause by color:</label>
+
+<select #color class="select select-bordered w-full max-w-xs" name="color-dropdown" id="color-dropdown" (change)="onSelect(color.value)">
     <option value="">ALL</option>
     @for (color of colorMap; track color[0]) {
         <option value="{{ color[1].name }}">{{ color[1].displayName }}</option>
     }
-</select>
+</select> -->
+
+
+<div class="dropdown dropdown-end">
+    <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">Find a cause by color:</div>
+    <ul
+      tabindex="0"
+      class="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+      @for (color of colorMap; track color[0]) {
+        <li><a>{{ color[1].displayName }}</a></li>
+    }
+    </ul>
+  </div>
