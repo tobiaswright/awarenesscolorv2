@@ -1,12 +1,14 @@
 import { Component, input } from '@angular/core';
 
 import { type Data } from '../color-data.model';
+import { TruncateNamesPipe } from "../truncate-names.pipe";
+
 
 
 @Component({
   selector: 'app-cause-card',
   standalone: true,
-  imports: [],
+  imports: [TruncateNamesPipe],
   templateUrl: './cause-card.component.html',
   styleUrl: './cause-card.component.css'
 })
