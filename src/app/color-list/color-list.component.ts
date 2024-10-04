@@ -1,4 +1,4 @@
-import { Component, effect, inject,  } from '@angular/core';
+import { Component, inject,  } from '@angular/core';
 import { DataService } from '../service/data.service';
 
 import { ColorDropdownComponent } from "../color-dropdown/color-dropdown.component";

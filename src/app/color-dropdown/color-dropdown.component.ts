@@ -1,11 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { DataService } from '../service/data.service';
+import type { ColorMap } from '../color-data.model';
 
-interface ColorMap {
-  name: string;
-  displayName: string;
-  hexCode: string;
-}
+
 
 @Component({
   selector: 'app-color-dropdown',
