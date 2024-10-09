@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TruncateNamesPipe implements PipeTransform {
 
   //our magicNumer is the number of spaces available when the page is full size so the causes done wrap. Will in the future make this dynamic
-  magicNumber = 22
+  magicNumber = 16
 
   transform(value: string, ...args: unknown[]): string {
 
