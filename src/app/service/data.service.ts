@@ -16,8 +16,6 @@ interface ColorMap {
   hexCode: string;
 }
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -27,10 +25,14 @@ export class DataService {
   private map = this.createMap(this.unsortedColorMap);
   private causeObj = this.createCauseObj(this.unsortedData, this.map);
   private isReversed = signal(false);
+  private itemsToLoad = 60
+  private pagination = signal(this.itemsToLoad);
   private filterColor = signal<string | null>(null);
   private data = signal<Data[]>([]);
   private causeList = computed(() => {
     let data = this.data();
+
+
     if (this.filterColor()) {
       data = this.data().filter(
         (item) => item.colorData.htmlcolor[0] === this.filterColor() ||
@@ -38,11 +40,9 @@ export class DataService {
       );
     }
 
-    if (this.isReversed()) {
-      return this.sortList(data, this.isReversed());
-    }
+    data =  this.isReversed() ? this.sortList(data, this.isReversed()) : this.sortList(data);
 
-    return this.sortList(data);
+    return data.slice(0, this.pagination());
   })
 
   constructor() {
@@ -59,6 +59,10 @@ export class DataService {
 
   reverseList() {
     this.isReversed.set(!this.isReversed());
+  }
+
+  loadMore() {
+    this.pagination.set(this.pagination() + this.itemsToLoad);
   }
 
   filterByColor( color: string ) {
