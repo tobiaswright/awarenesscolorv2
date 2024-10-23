@@ -19,4 +19,8 @@ export class ColorDropdownComponent {
     this.dataService.filterByColor( color )
   }
 
+  constructor() {
+    console.log(this.colorMap)
+  }
+
 }

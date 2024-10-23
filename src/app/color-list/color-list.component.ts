@@ -26,7 +26,6 @@ export class ColorListComponent {
   onWindowScroll() {
     // Check if the user has scrolled to the bottom
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      console.log("allo")
       this.dataService.loadMore();
     }
   }
