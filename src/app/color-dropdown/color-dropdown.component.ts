@@ -14,7 +14,8 @@ import type { ColorMap } from '../color-data.model';
 export class ColorDropdownComponent {
   dataService = inject( DataService );
   colorMap: Map<String, ColorMap> = this.dataService.getColorMap();
-
+  count = 0;
+  
   onSelect( color: string ) {
     this.dataService.filterByColor( color )
   }

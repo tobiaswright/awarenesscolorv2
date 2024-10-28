@@ -28,10 +28,16 @@ export class DataService {
   private itemsToLoad = 60
   private pagination = signal(this.itemsToLoad);
   private filterColor = signal<string | null>(null);
+  private filterCause = signal<string>("");
   private data = signal<Data[]>([]);
   private causeList = computed(() => {
     let data = this.data();
 
+    if (this.filterCause()) {
+      data = this.data().filter(
+        (item) => item.cause.toLowerCase().includes( this.filterCause().toLowerCase())
+      );
+    }
 
     if (this.filterColor()) {
       data = this.data().filter(
@@ -67,6 +73,10 @@ export class DataService {
 
   filterByColor( color: string ) {
     this.filterColor.set( color );
+  }
+
+  fllterByCause ( str: string) {
+    this.filterCause.set ( str )
   }
 
   private createMap(array: ColorMap[]): Map<string, ColorMap> {

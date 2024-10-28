@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, HostListener, inject,  } from '@angular/core';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { DataService } from '../service/data.service';
 
@@ -9,7 +8,7 @@ import { CauseCardComponent } from "../cause-card/cause-card.component";
 @Component({
   selector: 'app-color-list',
   standalone: true,
-  imports: [ColorDropdownComponent, CauseCardComponent, ScrollingModule],
+  imports: [ColorDropdownComponent, CauseCardComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './color-list.component.html',
   styleUrl: './color-list.component.css'
