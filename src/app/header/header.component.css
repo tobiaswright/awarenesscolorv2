@@ -3,6 +3,6 @@ h1, h2 {
 }
 
 header {
-    @apply flex flex-col items-center justify-between max-w-full md:max-w-6xl px-2 md:px-6 py-12 mx-auto md:flex-row
+    @apply flex flex-col items-center justify-between max-w-full md:max-w-6xl md:px-6 py-12 mx-auto md:flex-row
 }
 
