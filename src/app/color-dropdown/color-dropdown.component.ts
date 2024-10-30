@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { DataService } from '../service/data.service';
 import type { ColorMap } from '../color-data.model';
+import { RouterLink } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-color-dropdown',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './color-dropdown.component.html',
   styleUrl: './color-dropdown.component.css'
 })
