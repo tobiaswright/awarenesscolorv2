@@ -17,12 +17,14 @@ export class ColorDropdownComponent {
   colorMap: Map<String, ColorMap> = this.dataService.getColorMap();
   count = 0;
   
-  onSelect( color: string ) {
+  onColorFilter( color: string ) {
     this.dataService.filterByColor( color )
   }
 
   constructor() {
     console.log(this.colorMap)
   }
+
+  
 
 }

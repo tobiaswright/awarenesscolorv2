@@ -15,7 +15,7 @@
       class="flex menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
       @for (color of colorMap; track color[0]) {
         <li class="p-0 m-0">
-          <a [routerLink]=[color[1].name] class="flex flex-row">
+          <a [routerLink]=[color[1].name] (click)="onColorFilter( color[1].name )" class="flex flex-row">
             <div class="w-5 h-5 border border-slate-100 m-0 p-0" [style.background]="color[1].hexCode"></div>
             <div>{{ color[1].displayName }}</div>
         </a>

@@ -75,6 +75,11 @@ export class DataService {
     this.filterColor.set( color );
   }
 
+  getFilterColor() {
+    console.log("all",this.filterColor())
+    return this.filterColor();
+  }
+
   fllterByCause ( str: string) {
     this.filterCause.set ( str )
   }
