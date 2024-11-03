@@ -14,6 +14,7 @@ import { TruncateNamesPipe } from "../truncate-names.pipe";
 })
 export class CauseCardComponent {
   cause = input.required<Data>();
+  isHeader = input<boolean>(false)
 
   constructor() {
   }

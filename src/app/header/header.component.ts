@@ -14,10 +14,6 @@ export class HeaderComponent {
   dataService = inject( DataService );
   color = "red";
 
-  reverseList() {
-    this.dataService.reverseList();
-  }
-
   constructor(private data: DataService) {
     this.color = this.getRandomColor(this.dataService.getColorMap());
   }

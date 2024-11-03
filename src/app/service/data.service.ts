@@ -25,28 +25,27 @@ export class DataService {
   private map = this.createMap(this.unsortedColorMap);
   private causeObj = this.createCauseObj(this.unsortedData, this.map);
   private isReversed = signal(false);
-  private itemsToLoad = 60
+  private itemsToLoad = 60;
   private pagination = signal(this.itemsToLoad);
-  private filterColor = signal<string | null>(null);
+  private filterColor = signal<string>("");
   private filterCause = signal<string>("");
   private data = signal<Data[]>([]);
   private causeList = computed(() => {
     let data = this.data();
 
-    if (this.filterCause()) {
-      data = this.data().filter(
-        (item) => item.cause.toLowerCase().includes( this.filterCause().toLowerCase())
-      );
-    }
-
     if (this.filterColor()) {
-      data = this.data().filter(
+      data = data.filter(
         (item) => item.colorData.htmlcolor[0] === this.filterColor() ||
                   item.colorData.htmlcolor[1] === this.filterColor()
       );
     }
 
-    data =  this.isReversed() ? this.sortList(data, this.isReversed()) : this.sortList(data);
+      data = data.filter(
+        (item) => item.cause.toLowerCase().includes( this.filterCause().toLowerCase())
+      );
+
+
+    data = this.sortList(data);
 
     return data.slice(0, this.pagination());
   })
@@ -63,10 +62,6 @@ export class DataService {
     return this.map
   }
 
-  reverseList() {
-    this.isReversed.set(!this.isReversed());
-  }
-
   loadMore() {
     this.pagination.set(this.pagination() + this.itemsToLoad);
   }
@@ -75,13 +70,8 @@ export class DataService {
     this.filterColor.set( color );
   }
 
-  getFilterColor() {
-    console.log("all",this.filterColor())
-    return this.filterColor();
-  }
-
   fllterByCause ( str: string) {
-    this.filterCause.set ( str )
+    this.filterCause.set( str )
   }
 
   private createMap(array: ColorMap[]): Map<string, ColorMap> {

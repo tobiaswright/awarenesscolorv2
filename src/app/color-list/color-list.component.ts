@@ -17,14 +17,11 @@ export class ColorListComponent {
   dataService = inject( DataService )
   causeList = this.dataService.getCauseData();
 
-  reverseList() {
-    this.dataService.reverseList();
-  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // Check if the user has scrolled to the bottom
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    // Check if the user has scrolled to the bottom\
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
       this.dataService.loadMore();
     }
   }

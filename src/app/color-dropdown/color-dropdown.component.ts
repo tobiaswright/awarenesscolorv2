@@ -20,11 +20,4 @@ export class ColorDropdownComponent {
   onColorFilter( color: string ) {
     this.dataService.filterByColor( color )
   }
-
-  constructor() {
-    console.log(this.colorMap)
-  }
-
-  
-
 }

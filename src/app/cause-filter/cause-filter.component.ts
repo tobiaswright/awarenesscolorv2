@@ -13,7 +13,6 @@ export class CauseFilterComponent {
   filterQuery = signal<string>('');
 
   onFilterUpdate( str: string ) {
-    console.log(str);
     this.dataService.fllterByCause( str )
   }
 }
