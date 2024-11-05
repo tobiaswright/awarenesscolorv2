@@ -8,11 +8,11 @@
 </select> -->
 
 
-<div class="dropdown dropdown-end">
-    <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">Find a cause by color:</div>
+<div>
+    <div tabindex="0" role="button">Find a cause by color:</div>
     <ul
       tabindex="0"
-      class="flex menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+      class="flex bg-base-100 z-[1] mt-4 w-52 p-2 shadow">
       @for (color of colorMap; track color[0]) {
         <li class="p-0 m-0">
           <a [routerLink]=[color[1].name] (click)="onColorFilter( color[1].name )" class="flex flex-row">
