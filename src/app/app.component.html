@@ -1,10 +1,17 @@
-<app-header />
-        <app-cause-filter />
-    @defer {
-        <router-outlet></router-outlet>
-    } @loading  {
-        <p class="mx-auto max-w-full md:max-w-6xl">
-            Loading...
-        </p>
-    }
-<app-footer />
+<div class="mx-auto max-w-full md:max-w-6xl mt-9">
+    <app-header />
+    <app-cause-filter />
+    <div class="flex">
+        <div>
+            <app-color-dropdown />
+        </div>
+        <div>
+            @defer {
+                <router-outlet></router-outlet>
+            } @loading  {
+                <p>Loading...</p>
+            }
+        </div>
+    </div>
+    <app-footer />
+</div>

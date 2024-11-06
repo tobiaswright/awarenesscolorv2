@@ -15,7 +15,7 @@ ul {
 }
 
 div {
-    @apply flex flex-none w-52 mb-5
+    @apply flex w-60 mb-5
 }
 
 div > div {

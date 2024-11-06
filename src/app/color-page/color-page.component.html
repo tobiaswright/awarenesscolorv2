@@ -4,8 +4,9 @@
 </div>
 
 
-<div class="flex flex-wrap justify-center mx-auto max-w-full md:max-w-6xl">
+<div class="flex flex-wrap">
     @for (item of causeList(); track item.id) {
         <app-cause-card [cause]="item" [isHeader]="true"/>
     }
 </div>
+

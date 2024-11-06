@@ -24,7 +24,6 @@ export class DataService {
   private unsortedColorMap: ColorMap[] = colorMap;
   private map = this.createMap(this.unsortedColorMap);
   private causeObj = this.createCauseObj(this.unsortedData, this.map);
-  private isReversed = signal(false);
   private itemsToLoad = 60;
   private pagination = signal(this.itemsToLoad);
   private filterColor = signal<string>("");
