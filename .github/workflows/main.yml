@@ -28,4 +28,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         npm install
-        npm run ng -- deploy --no-silent --base-href=./ --name="tobiaswright" --email=tobias@tobiaswright.com
+        npm run ng -- deploy
