@@ -10,7 +10,7 @@
 <h3 class="text-sm font-bold mb-4">Sort by color:</h3>
   <ul class="w-40 mr-8">
     @for (color of colorMap; track color[0]) {
-      <li class="mb-3">
+      <li class="mb-3 text-sm">
         <a [routerLink]=[color[1].name] (click)="onColorFilter( color[1].name )" class="flex flex-row">
           <div class="w-5 h-5 border border-slate-100 mr-1 p-0" [style.background]="color[1].hexCode"></div>
           <div>{{ color[1].displayName }}</div>

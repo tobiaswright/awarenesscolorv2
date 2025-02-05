@@ -4,12 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CauseCardComponent } from "../cause-card/cause-card.component";
 import { ColorMap } from '../color-data.model';
+import { TruncateNamesPipe } from "../truncate-names.pipe";
 
 
 @Component({
   selector: 'app-color-page',
   standalone: true,
-  imports: [MatSlideToggleModule, CauseCardComponent],
+  imports: [MatSlideToggleModule, CauseCardComponent, TruncateNamesPipe],
   templateUrl: './color-page.component.html',
   styleUrl: './color-page.component.css'
 })

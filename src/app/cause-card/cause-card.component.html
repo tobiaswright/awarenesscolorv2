@@ -1,13 +1,7 @@
 <div>
-    @if ( !isHeader() ) {
         <div [style]="calculateStyles()"></div>
     <ul>
-        <li>{{cause().cause | truncateNames }}</li>
+        <li title="{{cause().causeFull}}">{{cause().cause | truncateNames }}</li>
         <li class="">{{cause().colorData.displayName}}</li>
     </ul>
-    } @else {
-    <ul>
-        <li>{{cause().cause }}</li>
-    </ul> 
-    }
 </div>

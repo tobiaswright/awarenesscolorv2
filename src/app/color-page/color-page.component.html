@@ -1,12 +1,12 @@
 <div class="flex">
-    <div class="w-12 h-12" [style.background]="swatchColor"></div>
-    <h2> {{ displayName }} </h2>
+    <div class="w-12 h-12 mr-6" [style.background]="swatchColor"></div>
+    <h2 class="text-4xl	"> {{ displayName }} </h2>
 </div>
 
 
-<div class="flex flex-wrap">
+<ul class="flex flex-wrap mt-8">
     @for (item of causeList(); track item.id) {
-        <app-cause-card [cause]="item" [isHeader]="true"/>
+        <li title="{{ item.causeFull }}" class="list-disc w-48 pr-4">{{ item.cause | truncateNames }}</li>
     }
-</div>
+</ul>
 
